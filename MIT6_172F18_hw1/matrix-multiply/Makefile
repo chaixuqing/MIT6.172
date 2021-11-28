@@ -19,7 +19,7 @@ PRODUCT := matrix_multiply
 CC := clang
 
 # These flags will be applied to your code any time it is built.
-CFLAGS := -Wall -std=c99 -D_POSIX_C_SOURCE=200809L
+CFLAGS := -Wall -std=c99 -D_POSIX_C_SOURCE=200809L 
 
 # These flags are applied only if you build your code with "make DEBUG=1".  -g
 # generates debugging symbols, -DDEBUG defines the preprocessor symbol "DEBUG"

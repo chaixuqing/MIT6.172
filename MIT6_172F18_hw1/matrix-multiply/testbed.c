@@ -50,7 +50,7 @@ int main(int argc, char** argv) {
   matrix* B;
   matrix* C;
 
-  const int kMatrixSize = 4;
+  const int kMatrixSize = 1000;
 
 
   // Parse command line arguments
@@ -107,12 +107,6 @@ int main(int argc, char** argv) {
         B->values[i][j] = 0;
       }
     }
-    for (int i = 0; i < B->rows; i++) {
-       for (int j = 0; j < B->cols; j++) {
-        // C->values[i][j] = 0;
-       }
-     }
-
   } else {
     for (int i = 0; i < A->rows; i++) {
       for (int j = 0; j < A->cols; j++) {
@@ -124,12 +118,6 @@ int main(int argc, char** argv) {
         B->values[i][j] = rand_r(&randomSeed) % 10;
       }
     }
-    for (int i = 0; i < B->rows; i++) {
-         for (int j = 0; j < B->cols; j++) {
-       //    C->values[i][j] = 0;
-         }
-       }
-
   }
 
   if (should_print) {
@@ -165,13 +153,5 @@ int main(int argc, char** argv) {
     printf("Elapsed execution time: %f sec\n", elapsed);
   }
 
-//  for (int i = 0; i < A->rows; i++) {
-  //    free(A->values[i]);
-    //  free(B->values[i]);
-//      free(C->values[i]);
-//  }
-//  free(A);
- // free(B);
- // free(C);
   return 0;
 }
