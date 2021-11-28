@@ -23,10 +23,10 @@ CFLAGS := -Wall -std=c99 -D_POSIX_C_SOURCE=200809L
 
 # These flags are applied only if you build your code with "make DEBUG=1".  -g
 # generates debugging symbols, -DDEBUG defines the preprocessor symbol "DEBUG"
-# (so that you can use "#ifdef DEBUG" in your code), and -O0 disables compiler
+# (so that you can use "#ifdef DEBUG" in your code), and -O3 disables compiler
 # optimizations, so that the binary generated more directly corresponds to your
 # source code.
-CFLAGS_DEBUG := -g -DDEBUG -O0
+CFLAGS_DEBUG := -g -DDEBUG -O3
 
 # In the release version, we ask for many optimizations; -O3 sets the
 # optimization level to three.  -DNDEBUG defines the NDEBUG macro,

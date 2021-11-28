@@ -22,36 +22,36 @@
 
 #include "./matrix_multiply.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <sys/mman.h>
 #include <fcntl.h>
 #include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+#include <sys/mman.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <unistd.h>
 #include "./tbassert.h"
 
 // Allocates a row-by-cols matrix and returns it
-matrix* make_matrix(int rows, int cols) {
-  matrix* new_matrix = malloc(sizeof(matrix));
+matrix *make_matrix(int rows, int cols) {
+  matrix *new_matrix = malloc(sizeof(matrix));
 
   // Set the number of rows and columns
   new_matrix->rows = rows;
   new_matrix->cols = cols;
 
   // Allocate a buffer big enough to hold the matrix.
-  new_matrix->values = (int**)malloc(sizeof(int*) * rows);
+  new_matrix->values = (int **)malloc(sizeof(int *) * rows);
   for (int i = 0; i < rows; i++) {
-    new_matrix->values[i] = (int*)malloc(sizeof(int) * cols);
+    new_matrix->values[i] = (int *)malloc(sizeof(int) * cols);
   }
 
   return new_matrix;
 }
 
 // Frees an allocated matrix
-void free_matrix(matrix* m) {
+void free_matrix(matrix *m) {
   for (int i = 0; i < m->rows; i++) {
     free(m->values[i]);
   }
@@ -60,7 +60,7 @@ void free_matrix(matrix* m) {
 }
 
 // Print matrix
-void print_matrix(const matrix* m) {
+void print_matrix(const matrix *m) {
   printf("------------\n");
   for (int i = 0; i < m->rows; i++) {
     for (int j = 0; j < m->cols; j++) {
@@ -71,23 +71,22 @@ void print_matrix(const matrix* m) {
   printf("------------\n");
 }
 
-
 // Multiply matrix A*B, store result in C.
-int matrix_multiply_run(const matrix* A, const matrix* B, matrix* C) {
-  tbassert(A->cols == B->rows,
-           "A->cols = %d, B->rows = %d\n", A->cols, B->rows);
-  tbassert(A->rows == C->rows,
-           "A->rows = %d, C->rows = %d\n", A->rows, C->rows);
-  tbassert(B->cols == C->cols,
-           "B->cols = %d, C->cols = %d\n", B->cols, C->cols);
+int matrix_multiply_run(const matrix *A, const matrix *B, matrix *C) {
+  tbassert(A->cols == B->rows, "A->cols = %d, B->rows = %d\n", A->cols,
+           B->rows);
+  tbassert(A->rows == C->rows, "A->rows = %d, C->rows = %d\n", A->rows,
+           C->rows);
+  tbassert(B->cols == C->cols, "B->cols = %d, C->cols = %d\n", B->cols,
+           C->cols);
   for (int i = 0; i < C->rows; i++) {
-      for (int j = 0; j< C->cols; j++) {
-          C->values[i][j] = 0;
-      }
+    for (int j = 0; j < C->cols; j++) {
+      C->values[i][j] = 0;
+    }
   }
   for (int i = 0; i < A->rows; i++) {
-      for (int k = 0; k < A->cols; k++) {
-    for (int j = 0; j < B->cols; j++) {
+    for (int k = 0; k < A->cols; k++) {
+      for (int j = 0; j < B->cols; j++) {
         C->values[i][j] += A->values[i][k] * B->values[k][j];
       }
     }
