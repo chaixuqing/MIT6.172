@@ -20,8 +20,8 @@
  * IN THE SOFTWARE.
  **/
 
-#include <stdio.h>
 #include <stdint.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 // Typedefs
@@ -43,4 +43,3 @@ void isort(data_t* begin, data_t* end) {
     cur++;
   }
 }
-
